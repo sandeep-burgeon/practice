@@ -1,0 +1,60 @@
+<html>
+	<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   
+</head>
+<body>
+<button type="button" id="hdata">Hide $ Show</button>
+<p>Paragraph Hide and Show</p>
+<button id="stop">Stop sliding</button>
+<div id="flip">Click to slide Up panel</div>
+<form name="cal" id="panel">
+<input type="text" name="answer" id="answer"><br>
+<input type="button" value="1" onclick="cal.answer.value += 1">
+<input type="button" value="2" onclick="cal.answer.value += 2">
+<input type="button" value="3" onclick="cal.answer.value += 3">
+<br>
+<input type="button" value="4" onclick="cal.answer.value += 4">
+<input type="button" value="5" onclick="cal.answer.value += 5">
+<input type="button" value="6" onclick="cal.answer.value += 6">
+<br>
+<input type="button" value="7" onclick="cal.answer.value += 7">
+<input type="button" value="8" onclick="cal.answer.value += 8">
+<input type="button" value="9" onclick="cal.answer.value += 9">
+<br>
+<input type="button" value="+" onclick="cal.answer.value +=' +'">
+<input type="button" value="-" onclick="cal.answer.value += '-'">
+<input type="button" value="/" onclick="cal.answer.value +=' /'">
+<br>
+<input type="button" value="*" onclick="cal.answer.value += '*'">
+<input type="button" value="0" onclick="cal.answer.value += 0">
+<input type="button" value="=" onclick="cal.answer.value = eval(cal.answer.value)">
+<br>
+<input type="button" value="Clear Data" onclick="cal.answer.value = ''">
+</form>
+
+<script>
+$(document).ready(function(){
+  $("#hdata").click(function(){
+    $("p").toggle('slow');
+	});
+  });
+</script>
+<script> 
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideUp(5000);
+  });
+  $("#stop").click(function(){
+    $("#panel").stop();
+  });
+});
+</script>
+<script>
+var a=prompt("please enter the first no.","");
+var b=prompt("please enter the second no.","");
+var c=parseInt(a)+parseInt(b);
+document.write(c);
+</script>
+</body>
+</html>

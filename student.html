@@ -1,0 +1,106 @@
+<html>
+<head></head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<body>
+<form id="insert_form">
+	S.N.
+	<input type="text" id="sl">
+	<br>
+	Name
+	<input type="text" id="name">
+	<br>
+	Address
+	<input type="text" id="address">
+	<br>
+	Phone
+	<input type="text" id="phone">
+	<br>
+	Email
+	<input type="text" id="email">
+	<br>
+	<input type="hidden" name="" id="upId">
+	<button type="button" onclick="addfun()">Add/Update Student</button>
+	
+</form>
+
+<table border="">
+<tr>
+<td>S.N.</td>
+<td>Name</td>
+<td>Address</td>
+<td>Phone</td>
+<td>Email</td>
+<td>Edit</td>
+<td onclick="delfun()">Delete</td>
+</tr>
+
+<script> 
+function addfun(){
+	var sl=$("#sl").value;
+	var name=$("#name").value;
+	var address=$("#address").value;
+	var phone=$("#phone").value;
+	var email=$("$email").value;
+	var upId=$("#upId").value;
+	if(upId=="" && $("#insert_form").valid())
+	{
+		var html = '<tr>\
+		<td class="sl" id="'+sl+'">'+sl+'</td>\
+		<td class="name">'+name+'</td>\
+		<td class="address">'+address+'</td>\
+		<td class="phone">'+phone+'</td>\
+		<td class="email">'+email+'</td>\
+		<td><button type="button" class="edit" >Edit</button></td>\
+		<td><button type="button" class="delbtn" onclick="c" >Delete</button></td>\
+		</tr>';
+		$('table').append(html);
+		$('#insert_form').find('input[type="text"],input[type="hidden"]').val("");
+	}
+	else{
+		var slid=$('#'+upId).closest('tr');
+		console.log(slid.find('.sl').length);
+		slid.find('.sl').text(sl);
+		slid.find('.name').text(name);
+		slid.find('.address').text(address);
+		slid.find('.phone').text(phone);
+		slid.find('.email').text(email);
+		$('#upId').val(" ");
+		$('#insert_form').find('input[type="text"],input[type="hidden"]').val("");
+		alert("Update Successfully");
+		
+	}
+}
+$(document).on('click','.delbtn',function(){
+	$(this).closest('tr').remove();
+	("Data Deleted Successful");
+});
+$(document).on('click','.upbtn',function(){
+	var upId=$("#upId").val();
+	var sl=document.getElementById("sl").value;
+	var name=document.getElementById("name").value;
+	var address=document.getElementById("address").value;
+	var phone=document.getElementById("phone").value;
+	var email=document.getElementById("email").value;
+
+});
+
+$(document).on('click','.edit',function(){
+	var sl=$(this).closest('tr').find('.sl').text();
+	var name=$(this).closest('tr').find('.name').text();
+	var address=$(this).closest('tr').find('.address').text();
+	var phone=$(this).closest('tr').find('.phone').text();
+	var email=$(this).closest('tr').find('.email').text();
+	$('#sl').val(sl);
+	$('#upId').val(sl);
+	$('#name').val(name);
+	$('#address').val(address);
+	$('#phone').val(phone);
+	$('#email').val(email);
+});
+
+</script>
+</table>
+<div></div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+</body>
+</html>
