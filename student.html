@@ -34,14 +34,37 @@
 <td onclick="delfun()">Delete</td>
 </tr>
 
-<script> 
+<script>
+$(document).ready(function() { 
+	$("#insert_form").validate({ 
+	rules: { 
+	  name: {
+		required: true,
+		maxlength:10 
+	 },
+	  email: { 
+	  required: true, 
+	  email: true 
+		}
+	},
+	messages: { 
+		  name:{ 
+		requred: "Please enter Name." ,
+		maxlength: "Name Should be lessthan 10 character"
+		},
+		email:{
+		requred: "Please enter Email." ,
+		}
+	}
+	}); 
+}); 
 function addfun(){
-	var sl=$("#sl").value;
-	var name=$("#name").value;
-	var address=$("#address").value;
-	var phone=$("#phone").value;
-	var email=$("$email").value;
-	var upId=$("#upId").value;
+	var sl=document.getElementById("sl").value;
+	var name=document.getElementById("name").value;
+	var address=document.getElementById("address").value;
+	var phone=document.getElementById("phone").value;
+	var email=document.getElementById("email").value;
+	var upId=document.getElementById("upId").value;
 	if(upId=="" && $("#insert_form").valid())
 	{
 		var html = '<tr>\
@@ -51,7 +74,7 @@ function addfun(){
 		<td class="phone">'+phone+'</td>\
 		<td class="email">'+email+'</td>\
 		<td><button type="button" class="edit" >Edit</button></td>\
-		<td><button type="button" class="delbtn" onclick="c" >Delete</button></td>\
+		<td><button type="button" class="delbtn" >Delete</button></td>\
 		</tr>';
 		$('table').append(html);
 		$('#insert_form').find('input[type="text"],input[type="hidden"]').val("");
@@ -71,8 +94,8 @@ function addfun(){
 	}
 }
 $(document).on('click','.delbtn',function(){
-	$(this).closest('tr').remove();
-	("Data Deleted Successful");
+$(this).closest('tr').remove();
+alert("Data Deleted Successful");
 });
 $(document).on('click','.upbtn',function(){
 	var upId=$("#upId").val();
@@ -85,21 +108,22 @@ $(document).on('click','.upbtn',function(){
 });
 
 $(document).on('click','.edit',function(){
-	var sl=$(this).closest('tr').find('.sl').text();
-	var name=$(this).closest('tr').find('.name').text();
-	var address=$(this).closest('tr').find('.address').text();
-	var phone=$(this).closest('tr').find('.phone').text();
-	var email=$(this).closest('tr').find('.email').text();
-	$('#sl').val(sl);
-	$('#upId').val(sl);
-	$('#name').val(name);
-	$('#address').val(address);
-	$('#phone').val(phone);
-	$('#email').val(email);
+var sl=$(this).closest('tr').find('.sl').text();
+var name=$(this).closest('tr').find('.name').text();
+var address=$(this).closest('tr').find('.address').text();
+var phone=$(this).closest('tr').find('.phone').text();
+var email=$(this).closest('tr').find('.email').text();
+$('#sl').val(sl);
+$('#upId').val(sl);
+$('#name').val(name);
+$('#address').val(address);
+$('#phone').val(phone);
+$('#email').val(email);
 });
 
 </script>
 </table>
+<h1>Update Student</h1>
 <div></div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 </body>
