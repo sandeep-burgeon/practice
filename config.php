@@ -1,5 +1,7 @@
 <?php
+error_reporting(0);
 session_start();
+
 	class Dbconnect{
 		public $host,$user,$password,$dbname;
 		public function set_connect($host , $user , $password , $dbname){

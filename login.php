@@ -35,9 +35,11 @@
 							url: "insert.php",
 							data: "email=" + email+ "&password=" + password + "&id=" + 2,
 							success: function(data) {
-							  if(data==1)
+							  data = JSON.parse(data);	
+							  if(data.message=='success')
 							   {
-								alert("sucess");
+								alert("success");
+								
 								window.location.assign("index.php");  
 								}
 							else{

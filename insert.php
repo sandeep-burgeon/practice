@@ -34,11 +34,48 @@ if($id==2)
 	$count=mysqli_num_rows($select);
 	if($count==1)
 	{
-		echo 1;
 		$_SESSION['name']=$data->name;
+		echo json_encode(array("name"=>$_SESSION['name'],"message"=>'success'));
+		exit;
 	}
 	else{
 		echo 0;
+		exit;
 		}
 	}
+
+  if($id== 'edit')
+  {
+  $user_id=$_POST['user_id'];
+  $name=$_POST['name']; 
+  $email=$_POST['email'];
+  $phone=$_POST['phone']; 
+  $address=$_POST['address']; 
+  $sql= mysqli_query($conn1,"update user set name='$name',email='$email',address='$address',phone='$phone' where user_id='".$user_id."'");
+	  if($sql)
+	  {
+	 echo 1;
+	   exit;
+	}
+else{
+	echo 0;
+  exit;
+ }
+}
+
+
+if($id== 'del')
+  {
+  $user_id=$_POST['user_id'];
+  $sql= mysqli_query($conn1,"delete from user where user_id='".$user_id."'");
+	  if($sql)
+	  {
+	 echo 1;
+	   exit;
+	}
+else{
+	echo 0;
+  exit;
+ }
+}
  ?>
