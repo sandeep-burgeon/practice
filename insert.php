@@ -62,6 +62,26 @@ else{
   exit;
  }
 }
+if($id== 'add')
+  {
+  $name=$_POST['name']; 
+  $email=$_POST['email'];
+  $phone=$_POST['phone']; 
+  $address=$_POST['address']; 
+  $password=$_POST['password'];
+  $state=$_POST['state']; 
+  $district=$_POST['district']; 
+  $sql= mysqli_query($conn1,"insert into user set name='$name',email='$email',address='$address',phone='$phone' ,password='$password',state='$state',district='$district'");
+	  if($sql)
+	  {
+	 echo 1;
+	   exit;
+	}
+else{
+	echo 0;
+  exit;
+ }
+}
 
 
 if($id== 'del')
@@ -77,5 +97,26 @@ else{
 	echo 0;
   exit;
  }
+}
+
+
+if($id== '4')
+  {
+  $stateId_new=$_POST['stateId_new'];
+  $sql= mysqli_query($conn1,"select * from district where state_id in($stateId_new) order by district_name asc");
+ $rowcount=mysqli_num_rows($sql);
+  if($rowcount>0)
+  {
+	  $html="<option>Select District</option>";
+	  while($seldist=mysqli_fetch_object($sql))
+	  {
+		$html.= "<option value='".$seldist->district_id."'>".$seldist->district_name."</option>";
+	  } 
+  }
+  else{
+	  $html.= '<option>District Not Available</option>';
+  }
+  echo $html;
+ exit;
 }
  ?>
