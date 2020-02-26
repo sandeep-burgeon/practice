@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <style>
+  	#test{
+  		position: fixed;
+  		bottom: 30px;
+  		left: 50px;
+  		min-height: 100px;
+  		min-width: 100px;
+  		background: pink;
+  	}
+  </style>
+</head>
+<body>
+	<button type="button" class="addBtn">Add</button>
+	<button class="rmvbtn">Remove</button>
+	<button id="scrollBtn">Scroll Top</button>
+<table class="apd">
+	<tr>
+		<th>Name</th>
+		<th>Address</th>
+		<th>Contact</th>
+		<th>Email</th>
+	</tr>
+	<tr>
+		<td><input type="text" name="sname"></td>
+		<td><input type="text" name="sname"></td>
+		<td><input type="text" name="sname"></td>
+		<td><input type="text" name="sname"></td>
+	</tr>
+</table>
+<div id="test"></div>
+<script>
+$(document).ready(function(){
+  $(".addBtn").click(function(){
+  	$(this).attr("class","btn btn-success");
+   $('<tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="Name"></td></tr>').appendTo(".apd");
+  });
+  $(".rmvbtn").click(function(){
+  	$("tr:last").remove();
+  })
+  $(window).scroll(function(){
+  	$('#test').html("");
+  	$('#test').append("Top:" + $(window).scrollTop());
+	});
+  $('#scrollBtn').click(function(){
+  	$(window).scrollTop(200);
+  })
+});
+</script>
+</body>
+</html>
